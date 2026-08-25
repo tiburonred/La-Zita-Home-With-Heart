@@ -337,6 +337,31 @@
     </p>
 
   </footer>
+  <div id="jacuzziGallery" class="gallery-modal" onclick="closeJacuzziGallery()">
+
+  <div class="gallery-content" onclick="event.stopPropagation()">
+
+    <span class="gallery-close" onclick="closeJacuzziGallery()">&times;</span>
+
+    <img src="la-zita-jacuzzi.jpg" alt="Jacuzzi privata La Zita">
+
+    <img src="la-zita-camera-vasca.jpg" alt="Camera con vasca La Zita">
+
+  </div>
+
+</div>
+
+<script>
+
+function openJacuzziGallery() {
+  document.getElementById("jacuzziGallery").style.display = "flex";
+}
+
+function closeJacuzziGallery() {
+  document.getElementById("jacuzziGallery").style.display = "none";
+}
+
+</script>
 
 </body>
 </html>
