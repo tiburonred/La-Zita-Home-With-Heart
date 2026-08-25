@@ -182,6 +182,49 @@
         letter-spacing: 2px;
       }
     }
+    .feature h3 {
+  cursor: pointer;
+}
+
+.feature h3:hover {
+  color: #8b2635;
+}
+
+.gallery-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.gallery-content {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+}
+
+.gallery-content img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 12px;
+  margin: 10px;
+}
+
+.gallery-close {
+  position: absolute;
+  top: -15px;
+  right: 0;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+}
   </style>
 </head>
 
@@ -220,15 +263,31 @@
       rallentare, rilassarsi e scoprire il territorio del Salento ionico.
     </p>
 
-    <div class="features">
+   <div id="jacuzziGallery" class="gallery-modal" onclick="closeJacuzziGallery()">
 
-      <div class="feature">
-        <div class="icon">🛁</div>
-        <h3>Jacuzzi privata</h3>
-        <p>
-          Un angolo di relax tutto per voi.
-        </p>
-      </div>
+  <div class="gallery-content" onclick="event.stopPropagation()">
+
+    <span class="gallery-close" onclick="closeJacuzziGallery()">&times;</span>
+
+    <img src="la-zita-jacuzzi.jpg" alt="Jacuzzi privata La Zita">
+
+    <img src="la-zita-camera-vasca.jpg" alt="Camera con vasca La Zita">
+
+  </div>
+
+</div>
+
+<script>
+
+function openJacuzziGallery() {
+  document.getElementById("jacuzziGallery").style.display = "flex";
+}
+
+function closeJacuzziGallery() {
+  document.getElementById("jacuzziGallery").style.display = "none";
+}
+
+</script>
 
       <div class="feature">
         <div class="icon">🏡</div>
