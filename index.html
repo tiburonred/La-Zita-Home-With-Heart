@@ -457,22 +457,7 @@ function openJacuzziGallery() {
 function closeJacuzziGallery() {
   document.getElementById("jacuzziGallery").style.display = "none";
 }
-function openHouseGallery() {
-  document.getElementById("houseGallery").style.display = "flex";
-}
 
-function closeHouseGallery() {
-  document.getElementById("houseGallery").style.display = "none";
-}
-function openHouseGallery() {
-  houseCurrentPhoto = 0;
-  document.getElementById("houseGallery").style.display = "flex";
-  document.getElementById("houseGalleryImage").src = housePhotos[houseCurrentPhoto];
-}
-
-function closeHouseGallery() {
-  document.getElementById("houseGallery").style.display = "none";
-}
 
 const housePhotos = [
   "La%20Zita.JPG",
@@ -489,6 +474,20 @@ let houseCurrentPhoto = 0;
 let houseTouchStartX = 0;
 let houseTouchEndX = 0;
 
+function openHouseGallery() {
+  houseCurrentPhoto = 0;
+
+  document.getElementById("houseGallery").style.display = "flex";
+
+  document.getElementById("houseGalleryImage").src =
+    housePhotos[houseCurrentPhoto];
+}
+
+function closeHouseGallery() {
+  document.getElementById("houseGallery").style.display = "none";
+}
+
+
 const houseImage = document.getElementById("houseGalleryImage");
 
 houseImage.addEventListener("touchstart", function(event) {
@@ -496,6 +495,7 @@ houseImage.addEventListener("touchstart", function(event) {
 });
 
 houseImage.addEventListener("touchend", function(event) {
+
   houseTouchEndX = event.changedTouches[0].clientX;
 
   const difference = houseTouchStartX - houseTouchEndX;
@@ -505,12 +505,19 @@ houseImage.addEventListener("touchend", function(event) {
   }
 
   if (difference > 0) {
+
+    // Swipe verso sinistra = foto successiva
     houseCurrentPhoto++;
+
     if (houseCurrentPhoto >= housePhotos.length) {
       houseCurrentPhoto = 0;
     }
+
   } else {
+
+    // Swipe verso destra = foto precedente
     houseCurrentPhoto--;
+
     if (houseCurrentPhoto < 0) {
       houseCurrentPhoto = housePhotos.length - 1;
     }
@@ -518,8 +525,8 @@ houseImage.addEventListener("touchend", function(event) {
 
   document.getElementById("houseGalleryImage").src =
     housePhotos[houseCurrentPhoto];
-});
 
+});
 
 </script>
 
