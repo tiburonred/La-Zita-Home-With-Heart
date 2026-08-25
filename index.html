@@ -464,6 +464,62 @@ function openHouseGallery() {
 function closeHouseGallery() {
   document.getElementById("houseGallery").style.display = "none";
 }
+function openHouseGallery() {
+  houseCurrentPhoto = 0;
+  document.getElementById("houseGallery").style.display = "flex";
+  document.getElementById("houseGalleryImage").src = housePhotos[houseCurrentPhoto];
+}
+
+function closeHouseGallery() {
+  document.getElementById("houseGallery").style.display = "none";
+}
+
+const housePhotos = [
+  "La%20Zita.JPG",
+  "La%20Zita%20logo.JPG",
+  "La%20Zita%20bagno.JPG",
+  "La%20Zita%20bagno%201.JPG",
+  "La%20Zita%20ingresso.JPG",
+  "La%20Zita%20ingresso1.JPG",
+  "La%20Zita%20terrazzo%20giorno.JPG",
+  "La%20Zita%20terrazzo%20notte.JPG"
+];
+
+let houseCurrentPhoto = 0;
+let houseTouchStartX = 0;
+let houseTouchEndX = 0;
+
+const houseImage = document.getElementById("houseGalleryImage");
+
+houseImage.addEventListener("touchstart", function(event) {
+  houseTouchStartX = event.touches[0].clientX;
+});
+
+houseImage.addEventListener("touchend", function(event) {
+  houseTouchEndX = event.changedTouches[0].clientX;
+
+  const difference = houseTouchStartX - houseTouchEndX;
+
+  if (Math.abs(difference) < 50) {
+    return;
+  }
+
+  if (difference > 0) {
+    houseCurrentPhoto++;
+    if (houseCurrentPhoto >= housePhotos.length) {
+      houseCurrentPhoto = 0;
+    }
+  } else {
+    houseCurrentPhoto--;
+    if (houseCurrentPhoto < 0) {
+      houseCurrentPhoto = housePhotos.length - 1;
+    }
+  }
+
+  document.getElementById("houseGalleryImage").src =
+    housePhotos[houseCurrentPhoto];
+});
+
 
 </script>
 
