@@ -304,7 +304,9 @@
 
   <div class="feature">
     <div class="icon">🏡</div>
-    <h3>Casa indipendente</h3>
+    <h3 onclick="openHouseGallery()" style="cursor:pointer;">
+  Casa indipendente
+</h3>
     <p>Privacy e tranquillità nel cuore del centro storico.</p>
   </div>
 
@@ -425,6 +427,24 @@
   </div>
 
 </div>
+  <div id="houseGallery" class="gallery-modal" onclick="closeHouseGallery()">
+
+  <div class="gallery-content" onclick="event.stopPropagation()">
+
+    <span class="gallery-close" onclick="closeHouseGallery()">&times;</span>
+
+    <img src="La-Zita.JPG" onclick="closeHouseGallery()">
+    <img src="La-Zita-logo.JPG" onclick="closeHouseGallery()">
+    <img src="La-Zita-bagno.JPG" onclick="closeHouseGallery()">
+    <img src="La-Zita-bagno-1.JPG" onclick="closeHouseGallery()">
+    <img src="La-Zita-ingresso.JPG" onclick="closeHouseGallery()">
+    <img src="La-Zita-ingresso1.JPG" onclick="closeHouseGallery()">
+    <img src="La-Zita-terrazzo-giorno.JPG" onclick="closeHouseGallery()">
+    <img src="La-Zita-terrazzo-notte.JPG" onclick="closeHouseGallery()">
+
+  </div>
+
+</div>  
 
 <script>
 
@@ -434,6 +454,13 @@ function openJacuzziGallery() {
 
 function closeJacuzziGallery() {
   document.getElementById("jacuzziGallery").style.display = "none";
+}
+function openHouseGallery() {
+  document.getElementById("houseGallery").style.display = "flex";
+}
+
+function closeHouseGallery() {
+  document.getElementById("houseGallery").style.display = "none";
 }
 
 </script>
