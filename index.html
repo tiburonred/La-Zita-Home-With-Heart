@@ -355,7 +355,7 @@
 
   <section class="booking">
 
-    <div class="booking-inner">
+  <div class="booking-inner">
 
       <h2>La tua esperienza a Pulsano</h2>
 
@@ -521,31 +521,31 @@ function openHeartGallery() {
   document.getElementById("heartGallery").style.display = "flex";
 
   document.getElementById("heartGalleryImage").src =
-    heartPhotos[heartCurrentPhoto];
+    heartPhotos[0];
 }
 
 function closeHeartGallery() {
   document.getElementById("heartGallery").style.display = "none";
 }
 
-const heartImage = document.getElementById("heartGalleryImage");
+const heartGallery = document.getElementById("heartGallery");
 
-heartImage.addEventListener("touchstart", function(event) {
+heartGallery.addEventListener("touchstart", function(event) {
   heartTouchStartX = event.touches[0].clientX;
 });
 
-heartImage.addEventListener("touchend", function(event) {
+heartGallery.addEventListener("touchend", function(event) {
 
   const touchEndX = event.changedTouches[0].clientX;
   const difference = heartTouchStartX - touchEndX;
 
   if (Math.abs(difference) < 50) {
-    closeHeartGallery();
     return;
   }
 
   if (difference > 0) {
 
+    // Swipe verso sinistra = foto successiva
     heartCurrentPhoto++;
 
     if (heartCurrentPhoto >= heartPhotos.length) {
@@ -554,6 +554,7 @@ heartImage.addEventListener("touchend", function(event) {
 
   } else {
 
+    // Swipe verso destra = foto precedente
     heartCurrentPhoto--;
 
     if (heartCurrentPhoto < 0) {
@@ -565,7 +566,6 @@ heartImage.addEventListener("touchend", function(event) {
     heartPhotos[heartCurrentPhoto];
 
 });
-
 
 const housePhotos = [
   "La%20Zita.JPG",
