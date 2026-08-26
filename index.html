@@ -598,13 +598,13 @@ function closeHouseGallery() {
 }
 
 
-const houseImage = document.getElementById("houseGalleryImage");
+const houseGallery = document.getElementById("houseGallery");
 
-houseImage.addEventListener("touchstart", function(event) {
+houseGallery.addEventListener("touchstart", function(event) {
   houseTouchStartX = event.touches[0].clientX;
 });
 
-houseImage.addEventListener("touchend", function(event) {
+houseGallery.addEventListener("touchend", function(event) {
 
   houseTouchEndX = event.changedTouches[0].clientX;
 
@@ -637,7 +637,6 @@ houseImage.addEventListener("touchend", function(event) {
     housePhotos[houseCurrentPhoto];
 
 });
-
 </script>
 
 </body>
