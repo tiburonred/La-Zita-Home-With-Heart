@@ -503,6 +503,25 @@ function openJacuzziGallery() {
 function closeJacuzziGallery() {
   document.getElementById("jacuzziGallery").style.display = "none";
 }
+
+function openSeaVideo() {
+
+  document.getElementById("seaVideoModal").style.display = "flex";
+
+  const video = document.getElementById("seaVideo");
+
+  video.currentTime = 0;
+  video.play();
+}
+
+function closeSeaVideo() {
+
+  const video = document.getElementById("seaVideo");
+
+  video.pause();
+
+  document.getElementById("seaVideoModal").style.display = "none";
+}
 const heartPhotos = [
   "La%20Zita%20coccole%20.jpg",
   "La%20Zita%20cucina.jpg",
