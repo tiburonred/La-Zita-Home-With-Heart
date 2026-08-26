@@ -344,11 +344,11 @@
     <p>Le splendide spiagge della costa di Pulsano sono a pochi minuti.</p>
   </div>
 
-  <div class="feature">
-    <div class="icon">❤️</div>
-    <h3>Home With Heart</h3>
-    <p>Ogni dettaglio è pensato per farvi sentire a casa.</p>
-  </div>
+  <div class="feature" onclick="openHeartGallery()" style="cursor:pointer;">
+  <div class="icon">❤️</div>
+  <h3>Home With Heart</h3>
+  <p>Ogni dettaglio è pensato per farvi sentire a casa.</p>
+</div>
 
 </div>
 
@@ -482,7 +482,20 @@
   </div>
 
 </div>
+<div id="heartGallery" class="gallery-modal" onclick="closeHeartGallery()">
 
+  <div class="gallery-content" onclick="event.stopPropagation()">
+
+    <span class="gallery-close" onclick="closeHeartGallery()">&times;</span>
+
+    <img id="heartGalleryImage"
+         src="La%20Zita%20coccole.jpg"
+         alt="La Zita Home With Heart">
+
+  </div>
+
+</div>
+ 
 <script>
 
 function openJacuzziGallery() {
@@ -492,6 +505,68 @@ function openJacuzziGallery() {
 function closeJacuzziGallery() {
   document.getElementById("jacuzziGallery").style.display = "none";
 }
+const heartPhotos = [
+  "La%20Zita%20coccole.jpg",
+  "La%20Zita%20cucina.jpg",
+  "La%20Zita%20divano.jpg",
+  "La%20Zita%20porta%20a%20bilico.jpg",
+  "La%20Zita%20soppalco.jpg",
+  "La%20Zita%20Camera%20da%20letto.jpg"
+];
+
+let heartCurrentPhoto = 0;
+let heartTouchStartX = 0;
+
+function openHeartGallery() {
+  heartCurrentPhoto = 0;
+
+  document.getElementById("heartGallery").style.display = "flex";
+
+  document.getElementById("heartGalleryImage").src =
+    heartPhotos[heartCurrentPhoto];
+}
+
+function closeHeartGallery() {
+  document.getElementById("heartGallery").style.display = "none";
+}
+
+const heartImage = document.getElementById("heartGalleryImage");
+
+heartImage.addEventListener("touchstart", function(event) {
+  heartTouchStartX = event.touches[0].clientX;
+});
+
+heartImage.addEventListener("touchend", function(event) {
+
+  const touchEndX = event.changedTouches[0].clientX;
+  const difference = heartTouchStartX - touchEndX;
+
+  if (Math.abs(difference) < 50) {
+    closeHeartGallery();
+    return;
+  }
+
+  if (difference > 0) {
+
+    heartCurrentPhoto++;
+
+    if (heartCurrentPhoto >= heartPhotos.length) {
+      heartCurrentPhoto = 0;
+    }
+
+  } else {
+
+    heartCurrentPhoto--;
+
+    if (heartCurrentPhoto < 0) {
+      heartCurrentPhoto = heartPhotos.length - 1;
+    }
+  }
+
+  document.getElementById("heartGalleryImage").src =
+    heartPhotos[heartCurrentPhoto];
+
+});
 
 
 const housePhotos = [
