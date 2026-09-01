@@ -532,24 +532,25 @@ function closeJacuzziGallery() {
   document.getElementById("jacuzziGallery").style.display = "none";
 }
 
+
 function openSeaVideo() {
-
-  document.getElementById("seaVideoModal").style.display = "flex";
-
+  const modal = document.getElementById("seaVideoModal");
   const video = document.getElementById("seaVideo");
 
+  modal.style.display = "flex";
   video.currentTime = 0;
   video.play();
 }
 
 function closeSeaVideo() {
-
+  const modal = document.getElementById("seaVideoModal");
   const video = document.getElementById("seaVideo");
 
   video.pause();
-
-  document.getElementById("seaVideoModal").style.display = "none";
+  modal.style.display = "none";
 }
+
+
 const heartPhotos = [
   "La%20Zita%20coccole%20.jpg",
   "La%20Zita%20cucina.jpg",
@@ -557,8 +558,6 @@ const heartPhotos = [
   "La%20Zita%20porta%20a%20bilico.jpg",
   "La%20Zita%20soppalco.jpg",
   "La%20Zita%20camera%20da%20letto.jpg"
-
-  
 ];
 
 let heartCurrentPhoto = 0;
@@ -570,54 +569,16 @@ function openHeartGallery() {
   document.getElementById("heartGallery").style.display = "flex";
 
   document.getElementById("heartGalleryImage").src =
-    heartPhotos[0];
+    heartPhotos[heartCurrentPhoto];
 }
 
 function closeHeartGallery() {
   document.getElementById("heartGallery").style.display = "none";
 }
 
-const heartGallery = document.getElementById("heartGallery");
-
-heartGallery.addEventListener("touchstart", function(event) {
-  heartTouchStartX = event.touches[0].clientX;
-});
-
-heartGallery.addEventListener("touchend", function(event) {
-
-  const touchEndX = event.changedTouches[0].clientX;
-  const difference = heartTouchStartX - touchEndX;
-
-  if (Math.abs(difference) < 50) {
-    return;
-  }
-
-  if (difference > 0) {
-
-    // Swipe verso sinistra = foto successiva
-    heartCurrentPhoto++;
-
-    if (heartCurrentPhoto >= heartPhotos.length) {
-      heartCurrentPhoto = 0;
-    }
-
-  } else {
-
-    // Swipe verso destra = foto precedente
-    heartCurrentPhoto--;
-
-    if (heartCurrentPhoto < 0) {
-      heartCurrentPhoto = heartPhotos.length - 1;
-    }
-  }
-
-  document.getElementById("heartGalleryImage").src =
-    heartPhotos[heartCurrentPhoto];
-
-});
 
 const housePhotos = [
-  "La%20Zita.JPG", 
+  "La%20Zita.JPG",
   "La%20Zita%20bagno.JPG",
   "La%20Zita%20bagno%201.JPG",
   "La%20Zita%20ingresso.JPG",
@@ -628,7 +589,6 @@ const housePhotos = [
 
 let houseCurrentPhoto = 0;
 let houseTouchStartX = 0;
-let houseTouchEndX = 0;
 
 function openHouseGallery() {
   houseCurrentPhoto = 0;
@@ -644,34 +604,55 @@ function closeHouseGallery() {
 }
 
 
-const houseGallery = document.getElementById("houseGallery");
+document.getElementById("heartGallery").addEventListener("touchstart", function(event) {
+  heartTouchStartX = event.touches[0].clientX;
+});
 
-houseGallery.addEventListener("touchstart", function(event) {
+document.getElementById("heartGallery").addEventListener("touchend", function(event) {
+
+  const touchEndX = event.changedTouches[0].clientX;
+  const difference = heartTouchStartX - touchEndX;
+
+  if (Math.abs(difference) < 50) return;
+
+  if (difference > 0) {
+    heartCurrentPhoto++;
+
+    if (heartCurrentPhoto >= heartPhotos.length) {
+      heartCurrentPhoto = 0;
+    }
+  } else {
+    heartCurrentPhoto--;
+
+    if (heartCurrentPhoto < 0) {
+      heartCurrentPhoto = heartPhotos.length - 1;
+    }
+  }
+
+  document.getElementById("heartGalleryImage").src =
+    heartPhotos[heartCurrentPhoto];
+
+});
+
+
+document.getElementById("houseGallery").addEventListener("touchstart", function(event) {
   houseTouchStartX = event.touches[0].clientX;
 });
 
-houseGallery.addEventListener("touchend", function(event) {
+document.getElementById("houseGallery").addEventListener("touchend", function(event) {
 
-  houseTouchEndX = event.changedTouches[0].clientX;
+  const touchEndX = event.changedTouches[0].clientX;
+  const difference = houseTouchStartX - touchEndX;
 
-  const difference = houseTouchStartX - houseTouchEndX;
-
-  if (Math.abs(difference) < 50) {
-    return;
-  }
+  if (Math.abs(difference) < 50) return;
 
   if (difference > 0) {
-
-    // Swipe verso sinistra = foto successiva
     houseCurrentPhoto++;
 
     if (houseCurrentPhoto >= housePhotos.length) {
       houseCurrentPhoto = 0;
     }
-
   } else {
-
-    // Swipe verso destra = foto precedente
     houseCurrentPhoto--;
 
     if (houseCurrentPhoto < 0) {
@@ -683,6 +664,7 @@ houseGallery.addEventListener("touchend", function(event) {
     housePhotos[houseCurrentPhoto];
 
 });
+  
 </script>
 
 </body>
